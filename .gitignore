@@ -1,0 +1,22 @@
+# dependencies / build output
+node_modules/
+dist/
+.vite/
+
+# local env + secrets (defense in depth — none should exist here)
+.env
+.env.local
+*.local
+**/auth-profiles.json
+**/.openclaw/
+
+# runtime / logs
+*.log
+task-status.json
+
+# local-only docs (machine paths / secret locations)
+SECRETS_MAP.md
+
+# OS cruft
+.DS_Store
+Thumbs.db

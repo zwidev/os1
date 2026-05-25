@@ -1,0 +1,15 @@
+{
+  "id": "voice-channel",
+  "type": "integration",
+  "name": "ElevenLabs Voice Channel",
+  "version": "0.1.0",
+  "summary": "Connects the ElevenLabs Conversational AI agent to this tenant. Points the agent's custom-llm Server URL at the tenant's public voice-proxy endpoint.",
+  "installScript": "install.sh",
+  "credentialIds": ["elevenlabs_api_key", "elevenlabs_agent_id"],
+  "endpoint": {
+    "publicUrlTemplate": "https://{{TENANT_HOST}}/v1",
+    "routesToService": "voice-proxy",
+    "localTarget": "http://127.0.0.1:18790"
+  },
+  "notes": "On a tenant VPS the proxy is reached via the tenant domain through the base reverse proxy; no tunnel needed. The registration script PATCHes the ElevenLabs agent to use custom-llm at the public URL."
+}

@@ -1,0 +1,72 @@
+{
+  "_comment": "OpenClaw gateway config template. {{PLACEHOLDERS}} are filled by the ZenCore provisioner from tenant credentials at setup. NO real secrets live in this file.",
+  "agents": {
+    "defaults": {
+      "workspace": "/opt/os1/.openclaw/workspace",
+      "timeoutSeconds": 60,
+      "models": {
+        "anthropic/claude-opus-4-7": {},
+        "anthropic/claude-sonnet-4-5": {}
+      },
+      "model": {
+        "primary": "anthropic/claude-sonnet-4-5"
+      }
+    }
+  },
+  "gateway": {
+    "mode": "local",
+    "auth": {
+      "mode": "token",
+      "token": "{{GATEWAY_TOKEN}}"
+    },
+    "port": 18789,
+    "bind": "loopback",
+    "controlUi": { "allowInsecureAuth": false },
+    "http": {
+      "endpoints": {
+        "chatCompletions": { "enabled": true }
+      }
+    },
+    "nodes": {
+      "denyCommands": [
+        "camera.snap", "camera.clip", "screen.record",
+        "contacts.add", "calendar.add", "reminders.add",
+        "sms.send", "sms.search"
+      ]
+    }
+  },
+  "memory": {
+    "backend": "builtin"
+  },
+  "tools": {
+    "profile": "coding"
+  },
+  "plugins": {
+    "entries": {
+      "anthropic": { "enabled": true },
+      "memory-core": {
+        "enabled": true,
+        "config": {
+          "dreaming": { "enabled": true, "frequency": "0 3 * * *" }
+        }
+      },
+      "memory-wiki": {
+        "enabled": true,
+        "config": {
+          "vault": { "path": "/opt/os1/.openclaw/wiki/main", "renderMode": "obsidian" },
+          "obsidian": { "enabled": true, "vaultName": "OS1 Memory" },
+          "bridge": { "enabled": true, "indexDailyNotes": true, "indexMemoryRoot": true, "followMemoryEvents": true },
+          "render": { "preserveHumanBlocks": true, "createBacklinks": true, "createDashboards": true }
+        }
+      }
+    }
+  },
+  "auth": {
+    "profiles": {
+      "anthropic:default": {
+        "provider": "anthropic",
+        "mode": "api_key"
+      }
+    }
+  }
+}

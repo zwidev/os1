@@ -1,0 +1,16 @@
+{
+  "id": "primary-llm",
+  "type": "inference-provider",
+  "name": "Anthropic Claude (primary LLM)",
+  "version": "0.1.0",
+  "provider": "anthropic",
+  "summary": "Cloud LLM that powers the fast talking layer and the OpenClaw worker. No local binary; wired into the gateway config at setup.",
+  "configRef": "../agent-gateway/config.template.json",
+  "credentialIds": ["primary_llm_api_key"],
+  "configMerge": {
+    "target": "auth.profiles.anthropic:default",
+    "keyFrom": "primary_llm_api_key",
+    "model": "claude-sonnet-4-5"
+  },
+  "notes": "Provider-only component (no install.sh). The agent-gateway install writes the key into the auth profile."
+}

@@ -1,0 +1,14 @@
+{
+  "id": "os1-dashboard",
+  "type": "dashboard",
+  "name": "OS1 Interface",
+  "version": "0.1.0",
+  "summary": "React UI for starting and holding the voice conversation. Connects to the ElevenLabs agent via WebRTC.",
+  "installScript": "install.sh",
+  "source": "ui/",
+  "buildOutput": "ui/dist",
+  "serve": { "type": "static", "root": "ui/dist", "route": "/" },
+  "credentialIds": ["elevenlabs_agent_id"],
+  "env": { "VITE_ELEVENLABS_AGENT_ID": "{{ELEVENLABS_AGENT_ID}}" },
+  "notes": "Agent ID is written to .env.local at build time. No secrets baked into the bundle (the ElevenLabs API key is never exposed to the browser)."
+}

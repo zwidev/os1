@@ -1,0 +1,31 @@
+{
+  "id": "memory-vault",
+  "type": "data",
+  "name": "OS1 Memory Vault",
+  "version": "0.1.0",
+  "summary": "Persistent cross-session memory: OpenClaw builtin backend (SQLite, hybrid keyword+vector) + memory-wiki Obsidian vault + nightly Dreaming consolidation.",
+  "installScript": "install.sh",
+  "layout": {
+    "memoryRoot": "/opt/os1/.openclaw/workspace",
+    "durableFacts": "/opt/os1/.openclaw/workspace/MEMORY.md",
+    "dailyNotes": "/opt/os1/.openclaw/workspace/memory/YYYY-MM-DD.md",
+    "obsidianVault": "/opt/os1/.openclaw/wiki/main",
+    "dreams": "/opt/os1/.openclaw/workspace/DREAMS.md"
+  },
+  "config": {
+    "backend": "builtin",
+    "embeddingProvider": "ollama",
+    "embeddingModel": "nomic-embed-text",
+    "dreaming": { "enabled": true, "frequency": "0 3 * * *" }
+  },
+  "retention": {
+    "dailyNotes": "evergreen files (MEMORY.md) never decayed; dated notes consolidated by Dreaming",
+    "exportPolicy": "private memory is never exported to the marketplace repo"
+  },
+  "autoRefresh": {
+    "unit": "os1-wiki-refresh.timer",
+    "interval": "15m",
+    "runs": "openclaw memory index -> wiki bridge import -> wiki compile"
+  },
+  "notes": "The memory/plugins config lives in agent-gateway/config.template.json. This component creates the vault dirs, initializes the Obsidian wiki (openclaw wiki init), and installs a systemd timer (os1-wiki-refresh.timer) that re-indexes and recompiles the vault every 15 min so it grows as memory grows."
+}

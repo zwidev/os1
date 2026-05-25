@@ -1,0 +1,28 @@
+{
+  "id": "agent-gateway",
+  "type": "runtime",
+  "name": "OS1 Agent Gateway",
+  "version": "0.1.0",
+  "summary": "OpenClaw gateway plus the OS1 voice proxy. The proxy answers ElevenLabs fast via Claude (talking layer) and dispatches real tasks to OpenClaw's tools in the background (doing layer).",
+  "runtime": "node>=20",
+  "installScript": "install.sh",
+  "configTemplate": "config.template.json",
+  "ports": [
+    { "port": 18789, "proto": "http", "role": "openclaw-gateway", "bind": "loopback" },
+    { "port": 18790, "proto": "http", "role": "voice-proxy", "bind": "loopback" }
+  ],
+  "services": [
+    { "unit": "agent-gateway.service", "exec": "openclaw gateway --port 18789" },
+    { "unit": "voice-proxy.service", "exec": "node /opt/os1/agent-gateway/proxy.js" }
+  ],
+  "healthCheck": { "url": "http://127.0.0.1:18790/health", "expectStatus": 200 },
+  "env": {
+    "OPENCLAW_STATE_DIR": "/opt/os1/.openclaw",
+    "OPENCLAW_PORT": "18789",
+    "PROXY_PORT": "18790",
+    "OPENCLAW_TOKEN": "{{GATEWAY_TOKEN}}",
+    "AUTH_PROFILE_PATH": "/opt/os1/.openclaw/agents/main/agent/auth-profiles.json",
+    "STATUS_FILE": "/opt/os1/agent-gateway/task-status.json"
+  },
+  "notes": "Secrets are injected at provision time from required credentials; none are committed to this repo."
+}
