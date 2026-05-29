@@ -1,16 +1,16 @@
 {
   "id": "local-inference",
   "type": "inference",
-  "name": "Ollama (local embeddings + fallback)",
-  "version": "0.1.0",
-  "summary": "Local Ollama server. Provides free embeddings for semantic memory recall and an optional offline LLM fallback.",
+  "name": "Ollama (Qwen2.5-14B primary + embeddings)",
+  "version": "0.2.0",
+  "summary": "Local Ollama server. Provides Qwen2.5-14B as the primary conversational LLM and nomic-embed-text for semantic memory recall. Fully self-contained — no external API key required.",
   "installScript": "install.sh",
-  "required": false,
+  "required": true,
   "models": [
     { "name": "nomic-embed-text", "role": "embeddings" },
-    { "name": "qwen2.5:7b", "role": "fallback-chat", "optional": true }
+    { "name": "qwen2.5:14b", "role": "primary-chat" }
   ],
   "ports": [{ "port": 11434, "proto": "http", "role": "ollama", "bind": "loopback" }],
   "healthCheck": { "url": "http://127.0.0.1:11434/api/tags", "expectStatus": 200 },
-  "resourceHints": { "minMemoryMb": 4096, "gpuOptional": true }
+  "resourceHints": { "minMemoryMb": 12288, "gpuOptional": true }
 }

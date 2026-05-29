@@ -2,10 +2,10 @@
   "schemaVersion": 1,
   "id": "os1-voice-agent",
   "name": "OS1 Voice Agent",
-  "version": "0.1.0",
-  "summary": "Real-time voice AI. ElevenLabs voice talks to Claude for fast, natural conversation; an OpenClaw agent performs file/code/system tasks in the background; persistent Obsidian-backed memory recalls context across sessions.",
+  "version": "0.2.0",
+  "summary": "Real-time voice AI. ElevenLabs voice talks to a local Qwen2.5-14B model for fast, private conversation; an OpenClaw agent performs file/code/system tasks in the background; persistent Obsidian-backed memory recalls context across sessions. No cloud LLM API key required.",
   "reviewStatus": "review",
-  "deploymentProfile": "openclaw-claude-elevenlabs-obsidian",
+  "deploymentProfile": "openclaw-qwen-elevenlabs-obsidian",
   "components": [
     {
       "id": "agent-gateway",
@@ -16,28 +16,18 @@
       "notes": "OpenClaw gateway (agent/tools host) + the voice proxy that splits fast conversation from background task execution."
     },
     {
-      "id": "primary-llm",
-      "type": "inference-provider",
-      "provider": "anthropic",
-      "configRef": "components/agent-gateway/config.template.json",
-      "credentialIds": ["primary_llm_api_key"],
-      "installOrder": 20,
-      "required": true,
-      "notes": "Claude via the Anthropic API. Powers both the fast talking layer and the OpenClaw worker."
-    },
-    {
       "id": "local-inference",
       "type": "inference",
       "path": "components/local-inference",
-      "installOrder": 30,
-      "required": false,
-      "notes": "Ollama for local embeddings (semantic memory recall) and optional offline LLM fallback."
+      "installOrder": 20,
+      "required": true,
+      "notes": "Ollama server. Pulls Qwen2.5-14B as the primary conversational LLM and nomic-embed-text for semantic memory recall. No external API key needed."
     },
     {
       "id": "memory-vault",
       "type": "data",
       "path": "components/memory-vault",
-      "installOrder": 40,
+      "installOrder": 30,
       "required": true,
       "notes": "OpenClaw builtin memory backend + memory-wiki Obsidian vault + nightly Dreaming consolidation."
     },
@@ -46,7 +36,7 @@
       "type": "integration",
       "path": "components/voice-channel",
       "credentialIds": ["elevenlabs_api_key", "elevenlabs_agent_id"],
-      "installOrder": 50,
+      "installOrder": 40,
       "required": true,
       "notes": "ElevenLabs Conversational AI agent. Points its custom-llm Server URL at this tenant's gateway."
     },
@@ -54,7 +44,7 @@
       "id": "os1-dashboard",
       "type": "dashboard",
       "path": "components/os1-dashboard",
-      "installOrder": 60,
+      "installOrder": 50,
       "required": true,
       "notes": "OS1 React UI for starting/holding the voice conversation."
     }
@@ -69,11 +59,10 @@
     "primaryPort": 18789
   },
   "requiredCredentials": [
-    { "id": "primary_llm_api_key", "label": "Anthropic API key", "requiredFor": "cloud inference" },
     { "id": "elevenlabs_api_key", "label": "ElevenLabs API key", "requiredFor": "voice synthesis and agent configuration" },
     { "id": "elevenlabs_agent_id", "label": "ElevenLabs Agent ID", "requiredFor": "voice channel" }
   ],
-  "resourceHints": { "minMemoryMb": 4096, "gpuOptional": true },
+  "resourceHints": { "minMemoryMb": 16384, "gpuOptional": true },
   "exportPolicy": {
     "excludeSecrets": true,
     "excludePrivateMemory": true,

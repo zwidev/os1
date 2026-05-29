@@ -5,11 +5,10 @@
       "workspace": "/opt/os1/.openclaw/workspace",
       "timeoutSeconds": 60,
       "models": {
-        "anthropic/claude-opus-4-7": {},
-        "anthropic/claude-sonnet-4-5": {}
+        "ollama/qwen2.5:14b": {}
       },
       "model": {
-        "primary": "anthropic/claude-sonnet-4-5"
+        "primary": "ollama/qwen2.5:14b"
       }
     }
   },
@@ -43,7 +42,12 @@
   },
   "plugins": {
     "entries": {
-      "anthropic": { "enabled": true },
+      "ollama": {
+        "enabled": true,
+        "config": {
+          "baseUrl": "http://127.0.0.1:11434"
+        }
+      },
       "memory-core": {
         "enabled": true,
         "config": {
@@ -58,14 +62,6 @@
           "bridge": { "enabled": true, "indexDailyNotes": true, "indexMemoryRoot": true, "followMemoryEvents": true },
           "render": { "preserveHumanBlocks": true, "createBacklinks": true, "createDashboards": true }
         }
-      }
-    }
-  },
-  "auth": {
-    "profiles": {
-      "anthropic:default": {
-        "provider": "anthropic",
-        "mode": "api_key"
       }
     }
   }
