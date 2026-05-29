@@ -1,11 +1,12 @@
 {
-  "_comment": "OpenClaw gateway config template. {{PLACEHOLDERS}} are filled by the ZenCore provisioner from tenant credentials at setup. NO real secrets live in this file.",
+  "_comment": "OpenClaw gateway config template. Primary model defaults to Qwen2.5-14B. If the optional primary-llm component runs with an Anthropic key, it patches model.primary to Claude Sonnet and enables the anthropic plugin. {{PLACEHOLDERS}} are filled by the ZenCore provisioner. NO real secrets live in this file.",
   "agents": {
     "defaults": {
       "workspace": "/opt/os1/.openclaw/workspace",
       "timeoutSeconds": 60,
       "models": {
-        "ollama/qwen2.5:14b": {}
+        "ollama/qwen2.5:14b": {},
+        "anthropic/claude-sonnet-4-6": {}
       },
       "model": {
         "primary": "ollama/qwen2.5:14b"
@@ -47,6 +48,9 @@
         "config": {
           "baseUrl": "http://127.0.0.1:11434"
         }
+      },
+      "anthropic": {
+        "enabled": false
       },
       "memory-core": {
         "enabled": true,

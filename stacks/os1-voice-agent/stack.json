@@ -3,7 +3,7 @@
   "id": "os1-voice-agent",
   "name": "OS1 Voice Agent",
   "version": "0.2.0",
-  "summary": "Real-time voice AI. ElevenLabs voice talks to a local Qwen2.5-14B model for fast, private conversation; an OpenClaw agent performs file/code/system tasks in the background; persistent Obsidian-backed memory recalls context across sessions. No cloud LLM API key required.",
+  "summary": "Real-time voice AI. ElevenLabs voice talks to a local Qwen2.5-14B model by default — no cloud LLM API key required. Optionally upgrades to Claude Sonnet if an Anthropic key is supplied. OpenClaw handles background tasks. Persistent Obsidian-backed memory with nightly consolidation.",
   "reviewStatus": "review",
   "deploymentProfile": "openclaw-qwen-elevenlabs-obsidian",
   "components": [
@@ -13,30 +13,40 @@
       "path": "components/agent-gateway",
       "installOrder": 10,
       "required": true,
-      "notes": "OpenClaw gateway (agent/tools host) + the voice proxy that splits fast conversation from background task execution."
+      "notes": "OpenClaw gateway + voice proxy. Default primary model is Qwen2.5-14B; patched to Claude Sonnet by primary-llm component if key is provided."
+    },
+    {
+      "id": "primary-llm",
+      "type": "inference-provider",
+      "provider": "anthropic",
+      "path": "components/primary-llm",
+      "credentialIds": ["primary_llm_api_key"],
+      "installOrder": 20,
+      "required": false,
+      "notes": "Optional. If an Anthropic API key is supplied at setup, this component patches the gateway config to use Claude Sonnet as primary instead of Qwen. Qwen stays installed as fallback."
     },
     {
       "id": "local-inference",
       "type": "inference",
       "path": "components/local-inference",
-      "installOrder": 20,
+      "installOrder": 30,
       "required": true,
-      "notes": "Ollama server. Pulls Qwen2.5-14B as the primary conversational LLM and nomic-embed-text for semantic memory recall. No external API key needed."
+      "notes": "Ollama server. Pulls Qwen2.5-14B (primary or fallback) and nomic-embed-text for memory recall. Always installed."
     },
     {
       "id": "memory-vault",
       "type": "data",
       "path": "components/memory-vault",
-      "installOrder": 30,
+      "installOrder": 40,
       "required": true,
-      "notes": "OpenClaw builtin memory backend + memory-wiki Obsidian vault + nightly Dreaming consolidation."
+      "notes": "OpenClaw builtin memory backend + Obsidian wiki + nightly dreaming consolidation."
     },
     {
       "id": "voice-channel",
       "type": "integration",
       "path": "components/voice-channel",
       "credentialIds": ["elevenlabs_api_key", "elevenlabs_agent_id"],
-      "installOrder": 40,
+      "installOrder": 50,
       "required": true,
       "notes": "ElevenLabs Conversational AI agent. Points its custom-llm Server URL at this tenant's gateway."
     },
@@ -44,7 +54,7 @@
       "id": "os1-dashboard",
       "type": "dashboard",
       "path": "components/os1-dashboard",
-      "installOrder": 50,
+      "installOrder": 60,
       "required": true,
       "notes": "OS1 React UI for starting/holding the voice conversation."
     }
@@ -61,6 +71,9 @@
   "requiredCredentials": [
     { "id": "elevenlabs_api_key", "label": "ElevenLabs API key", "requiredFor": "voice synthesis and agent configuration" },
     { "id": "elevenlabs_agent_id", "label": "ElevenLabs Agent ID", "requiredFor": "voice channel" }
+  ],
+  "optionalCredentials": [
+    { "id": "primary_llm_api_key", "label": "Anthropic API key (optional)", "requiredFor": "Upgrade primary LLM from local Qwen2.5-14B to Claude Sonnet" }
   ],
   "resourceHints": { "minMemoryMb": 16384, "gpuOptional": true },
   "exportPolicy": {
