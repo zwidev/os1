@@ -1,0 +1,11 @@
+{
+  "id": "shopping-dashboard",
+  "type": "dashboard",
+  "name": "Shopping Dashboard",
+  "version": "0.1.0",
+  "summary": "React + Vite dark-theme UI. Chat panel with quick-start prompts, basket sidebar with per-store checkout links, and inline product result cards parsed from Claude's <results> JSON.",
+  "installScript": "install.sh",
+  "source": "ui/",
+  "buildOutput": "ui/dist",
+  "serve": { "type": "proxy", "target": "http://127.0.0.1:18792", "route": "/" }
+}

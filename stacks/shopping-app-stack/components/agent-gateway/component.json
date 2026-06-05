@@ -1,0 +1,15 @@
+{
+  "id": "agent-gateway",
+  "type": "runtime",
+  "name": "Shopping Gateway",
+  "version": "0.1.0",
+  "summary": "Node.js HTTP server. Handles /api/chat (Claude tool-use loop), /api/basket, /api/preferences, and static file serving for the React UI.",
+  "installScript": "install.sh",
+  "ports": [
+    { "port": 18792, "proto": "http", "role": "shopping-gateway", "bind": "loopback" }
+  ],
+  "services": [
+    { "unit": "shopping-gateway.service", "exec": "node /opt/shopping-app/server.js" }
+  ],
+  "healthCheck": { "url": "http://127.0.0.1:18792/health", "expectStatus": 200 }
+}

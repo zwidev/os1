@@ -1,0 +1,55 @@
+{
+  "schemaVersion": 1,
+  "id": "shopping-app-stack",
+  "name": "Shopping App",
+  "version": "0.1.0",
+  "summary": "Autonomous shopping assistant on a dedicated server. Searches Tesco, Sainsbury's, Amazon, and eBay — compares prices, manages a basket, and remembers your preferences. Powered by Claude.",
+  "reviewStatus": "review",
+  "deploymentProfile": "claude-shopping",
+  "components": [
+    {
+      "id": "agent-gateway",
+      "type": "runtime",
+      "path": "components/agent-gateway",
+      "installOrder": 10,
+      "required": true,
+      "notes": "Node.js shopping server: /api/chat with Claude tool-use loop, /api/basket, /api/preferences, and static UI serving."
+    },
+    {
+      "id": "primary-llm",
+      "type": "inference-provider",
+      "provider": "anthropic",
+      "path": "components/primary-llm",
+      "credentialIds": ["anthropic_api_key"],
+      "installOrder": 20,
+      "required": true,
+      "notes": "Writes the Anthropic API key into /opt/shopping-app/.env so the gateway can call Claude."
+    },
+    {
+      "id": "shopping-dashboard",
+      "type": "dashboard",
+      "path": "components/shopping-dashboard",
+      "installOrder": 30,
+      "required": true,
+      "notes": "React + Vite dark-theme chat UI. Basket sidebar with per-store checkout links, product result cards, and quick-start prompts. Built on the VPS."
+    }
+  ],
+  "services": [
+    { "id": "shopping-gateway", "unit": "shopping-gateway.service", "componentId": "agent-gateway" }
+  ],
+  "entrypoints": {
+    "setupUrl": "/",
+    "dashboardUrl": "/",
+    "primaryPort": 18792
+  },
+  "requiredCredentials": [
+    { "id": "anthropic_api_key", "label": "Anthropic API key", "requiredFor": "Claude (shopping agent brain)" }
+  ],
+  "optionalCredentials": [],
+  "resourceHints": { "minMemoryMb": 4096, "gpuOptional": false },
+  "exportPolicy": {
+    "excludeSecrets": true,
+    "excludePrivateMemory": false,
+    "excludeCustomerData": true
+  }
+}

@@ -1,0 +1,67 @@
+{
+  "id": "shopping-tools",
+  "name": "Shopping Tools",
+  "version": "0.1.0",
+  "status": "live",
+  "description": "Tool contract for the Shopping App agent. Product search across Tesco, Sainsbury's, Amazon, and eBay; price comparison; basket management; and preference persistence.",
+  "tools": [
+    {
+      "name": "search_store",
+      "description": "Search a retailer for products matching the query. Returns a list with name, price, store, and URL.",
+      "inputSchema": {
+        "type": "object",
+        "required": ["query"],
+        "properties": {
+          "query":     { "type": "string" },
+          "store":     { "type": "string", "enum": ["tesco", "sainsburys", "amazon", "ebay", "all"] },
+          "max_price": { "type": "number" },
+          "category":  { "type": "string" }
+        }
+      }
+    },
+    {
+      "name": "add_to_basket",
+      "description": "Add a product to the basket. Persists to /opt/shopping-app/data/basket.json.",
+      "inputSchema": {
+        "type": "object",
+        "required": ["name", "store", "price"],
+        "properties": {
+          "name":     { "type": "string" },
+          "store":    { "type": "string", "enum": ["tesco", "sainsburys", "amazon", "ebay"] },
+          "price":    { "type": "number" },
+          "url":      { "type": "string" },
+          "quantity": { "type": "number" }
+        }
+      }
+    },
+    {
+      "name": "compare_prices",
+      "description": "Compare prices for a product across multiple retailers, sorted cheapest first.",
+      "inputSchema": {
+        "type": "object",
+        "required": ["query"],
+        "properties": {
+          "query":  { "type": "string" },
+          "stores": { "type": "array", "items": { "type": "string" } }
+        }
+      }
+    },
+    {
+      "name": "get_basket",
+      "description": "Get the current basket contents grouped by retailer with subtotals and a grand total.",
+      "inputSchema": { "type": "object", "properties": {} }
+    },
+    {
+      "name": "save_preference",
+      "description": "Persist a user preference. Keys: dietary, budget_max, preferred_store, brand, or any custom key.",
+      "inputSchema": {
+        "type": "object",
+        "required": ["key", "value"],
+        "properties": {
+          "key":   { "type": "string" },
+          "value": { "type": "string" }
+        }
+      }
+    }
+  ]
+}

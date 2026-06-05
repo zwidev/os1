@@ -1,0 +1,10 @@
+{
+  "id": "primary-llm",
+  "type": "inference-provider",
+  "provider": "anthropic",
+  "name": "Anthropic Claude",
+  "version": "0.1.0",
+  "summary": "Writes the Anthropic API key into /opt/shopping-app/.env so the gateway can call Claude. Restarts the gateway service after writing.",
+  "installScript": "install.sh",
+  "credentialIds": ["anthropic_api_key"]
+}
