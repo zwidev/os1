@@ -10,6 +10,9 @@ C="${STACK_DIR}/components"
 echo "==> [10] agent-gateway (runtime)"
 bash "${C}/agent-gateway/install.sh"
 
+echo "==> [15] grocery-cli (uk-grocery-cli groc-api sidecar)"
+bash "${C}/grocery-cli/install.sh" || echo "WARN: grocery-cli optional; continuing without live search"
+
 echo "==> [20] primary-llm (Anthropic Claude)"
 bash "${C}/primary-llm/install.sh"
 

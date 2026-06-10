@@ -16,6 +16,14 @@
       "notes": "Node.js shopping server: /api/chat with Claude tool-use loop, /api/basket, /api/preferences, and static UI serving."
     },
     {
+      "id": "grocery-cli",
+      "type": "integration",
+      "path": "components/grocery-cli",
+      "installOrder": 15,
+      "required": false,
+      "notes": "uk-grocery-cli groc-api sidecar on port 7876. Provides live Tesco and Sainsbury's search. Falls back to mock data if not running."
+    },
+    {
       "id": "primary-llm",
       "type": "inference-provider",
       "provider": "anthropic",
@@ -35,7 +43,8 @@
     }
   ],
   "services": [
-    { "id": "shopping-gateway", "unit": "shopping-gateway.service", "componentId": "agent-gateway" }
+    { "id": "shopping-gateway", "unit": "shopping-gateway.service", "componentId": "agent-gateway" },
+    { "id": "groc-api", "unit": "groc-api.service", "componentId": "grocery-cli" }
   ],
   "entrypoints": {
     "setupUrl": "/",
@@ -45,7 +54,12 @@
   "requiredCredentials": [
     { "id": "anthropic_api_key", "label": "Anthropic API key", "requiredFor": "Claude (shopping agent brain)" }
   ],
-  "optionalCredentials": [],
+  "optionalCredentials": [
+    { "id": "sainsburys_email",    "label": "Sainsbury's email",    "requiredFor": "Sainsbury's basket sync and authenticated search" },
+    { "id": "sainsburys_password", "label": "Sainsbury's password", "requiredFor": "Sainsbury's basket sync and authenticated search" },
+    { "id": "tesco_email",         "label": "Tesco email",          "requiredFor": "Tesco basket sync and authenticated search" },
+    { "id": "tesco_password",      "label": "Tesco password",       "requiredFor": "Tesco basket sync and authenticated search" }
+  ],
   "resourceHints": { "minMemoryMb": 4096, "gpuOptional": false },
   "exportPolicy": {
     "excludeSecrets": true,

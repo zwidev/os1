@@ -28,6 +28,7 @@ ANTHROPIC_MODEL=claude-sonnet-4-6
 ANTHROPIC_API_KEY=
 STATIC_DIR=/opt/shopping-app/dashboard
 DATA_DIR=/opt/shopping-app/data
+GROC_API_URL=http://127.0.0.1:7876
 ENV
 fi
 

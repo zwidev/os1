@@ -17,6 +17,7 @@ const PORT = parseInt(process.env.SHOPPING_PORT || '18792', 10);
 const ANTHROPIC_MODEL = process.env.ANTHROPIC_MODEL || 'claude-sonnet-4-6';
 const STATIC_DIR = process.env.STATIC_DIR || path.join(__dirname, 'dashboard');
 const DATA_DIR = process.env.DATA_DIR || path.join(__dirname, 'data');
+const GROC_API_URL = process.env.GROC_API_URL || 'http://127.0.0.1:7876';
 
 const anthropic = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY || '' });
 
@@ -38,8 +39,48 @@ function writeBasket(b) { writeJSON(BASKET_FILE, b); }
 function readPrefs()  { return readJSON(PREFS_FILE, {}); }
 function writePrefs(p) { writeJSON(PREFS_FILE, p); }
 
+// ── Live search via uk-grocery-cli groc-api ────────────────────────────────────
+// Calls the groc-api sidecar on port 7876 for tesco and sainsburys.
+// Falls back to mock data if groc-api is not running.
+
+const GROC_STORE_MAP = { tesco: 'tesco', sainsburys: 'sainsburys' };
+
+function grocApiSearch(query, provider, limit) {
+  return new Promise((resolve, reject) => {
+    const url = `${GROC_API_URL}/search?q=${encodeURIComponent(query)}&provider=${encodeURIComponent(provider)}&limit=${limit}`;
+    http.get(url, { timeout: 8000 }, (res) => {
+      let data = '';
+      res.on('data', c => data += c);
+      res.on('end', () => {
+        try {
+          const parsed = JSON.parse(data);
+          if (parsed.error) { reject(new Error(parsed.error)); return; }
+          resolve((parsed.products || []).map(p => ({
+            name: p.name,
+            price: p.retail_price?.price || 0,
+            store: p.provider || provider,
+            url: null,
+            image: p.image_url || null,
+          })));
+        } catch (e) { reject(e); }
+      });
+    }).on('error', reject).on('timeout', () => reject(new Error('groc-api timeout')));
+  });
+}
+
+async function liveSearch(query, store, limit) {
+  const provider = GROC_STORE_MAP[store];
+  if (!provider) return null; // caller should fall back to mock for amazon/ebay
+  try {
+    return await grocApiSearch(query, provider, limit);
+  } catch (e) {
+    console.warn(`[groc-api] ${store} search failed (${e.message}) — using mock data`);
+    return null;
+  }
+}
+
 // ── Mock product catalog ───────────────────────────────────────────────────────
-// TODO: Replace with Playwright automation per store.
+// Fallback for amazon/ebay and when groc-api is not running.
 //       Tesco/Sainsbury's: use UK Grocery CLI or Playwright with cookie import.
 //       Amazon: use the Product Advertising API or Playwright.
 //       eBay: use the Browse API (OAuth).
@@ -205,14 +246,23 @@ const TOOLS = [
 async function executeTool(name, input) {
   if (name === 'search_store') {
     const { query = '', store = 'all', max_price } = input;
-    const results = mockSearch(query, store, max_price);
-    return { results, count: results.length, query, store };
+    const storesToSearch = store === 'all' ? ['tesco', 'sainsburys', 'amazon', 'ebay'] : [store];
+    const results = [];
+    for (const s of storesToSearch) {
+      const live = await liveSearch(query, s, 8);
+      results.push(...(live !== null ? live : mockSearch(query, s, null)));
+    }
+    const filtered = results.filter(p => !max_price || p.price <= max_price).slice(0, 12);
+    return { results: filtered, count: filtered.length, query, store };
   }
 
   if (name === 'compare_prices') {
     const { query = '', stores = ['tesco', 'sainsburys'] } = input;
     const results = [];
-    for (const s of stores) results.push(...mockSearch(query, s, null));
+    for (const s of stores) {
+      const live = await liveSearch(query, s, 6);
+      results.push(...(live !== null ? live : mockSearch(query, s, null)));
+    }
     return { results: results.sort((a, b) => a.price - b.price), query, stores };
   }
 
@@ -372,7 +422,7 @@ const server = http.createServer(async (req, res) => {
 
   // Health
   if (method === 'GET' && url === '/health') {
-    json(res, 200, { status: 'ok', model: ANTHROPIC_MODEL, apiKey: !!process.env.ANTHROPIC_API_KEY });
+    json(res, 200, { status: 'ok', model: ANTHROPIC_MODEL, apiKey: !!process.env.ANTHROPIC_API_KEY, grocApi: GROC_API_URL });
     return;
   }
 

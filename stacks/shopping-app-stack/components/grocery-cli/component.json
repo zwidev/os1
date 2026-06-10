@@ -1,0 +1,15 @@
+{
+  "id": "grocery-cli",
+  "type": "integration",
+  "name": "UK Grocery CLI",
+  "version": "2.1.0",
+  "summary": "uk-grocery-cli HTTP sidecar (groc-api) on port 7876. Provides live product search for Tesco and Sainsbury's. The shopping gateway calls /search?q=&provider= for real results instead of mock data.",
+  "installScript": "install.sh",
+  "ports": [
+    { "port": 7876, "proto": "http", "role": "groc-api", "bind": "loopback" }
+  ],
+  "services": [
+    { "unit": "groc-api.service", "exec": "node /opt/uk-grocery-cli/dist/http-server.js" }
+  ],
+  "healthCheck": { "url": "http://127.0.0.1:7876/health", "expectStatus": 200 }
+}
