@@ -16,6 +16,7 @@
     "ollama-embeddings",
     "obsidian-memory",
     "elevenlabs-voice",
+    "recall-meeting-bots-optional",
     "os1-ui",
   ],
   packagingMode: "stack",
@@ -29,6 +30,7 @@
   ],
   optionalCredentials: [
     "primary_llm_api_key",
+    "recall_api_key",
   ],
   eyebrow: "Voice",
   category: "assistant",
@@ -38,6 +40,7 @@
     "Optional Claude Sonnet upgrade — supply Anthropic key at setup",
     "Background file/code/system task execution via OpenClaw",
     "Cross-session Obsidian memory with nightly dreaming",
+    "Meeting bot recording & live transcription via Recall.ai (optional — Zoom, Google Meet, Teams)",
   ],
   version: "0.2.0",
   firstParty: true,

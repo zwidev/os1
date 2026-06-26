@@ -1,0 +1,28 @@
+{
+  "name": "recall_send_bot",
+  "description": "Sends a Recall.ai bot to a Zoom, Google Meet, Microsoft Teams, or Webex meeting URL. The bot joins the call and begins recording audio and transcribing in real time. Use this when the user asks you to record a meeting, take notes on a call, or join a video conference on their behalf.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "meeting_url": {
+        "type": "string",
+        "description": "Full URL of the meeting to join. Examples: https://zoom.us/j/123456, https://meet.google.com/abc-defg-hij, https://teams.microsoft.com/l/meetup-join/..."
+      },
+      "bot_name": {
+        "type": "string",
+        "description": "Display name for the bot inside the meeting. Defaults to 'OS1 Notetaker' if omitted."
+      }
+    },
+    "required": ["meeting_url"]
+  },
+  "execute": {
+    "type": "http",
+    "method": "POST",
+    "url": "http://127.0.0.1:18791/api/bots",
+    "headers": { "Content-Type": "application/json" },
+    "body": {
+      "meeting_url": "{{meeting_url}}",
+      "bot_name": "{{bot_name}}"
+    }
+  }
+}

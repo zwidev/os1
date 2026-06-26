@@ -1,0 +1,19 @@
+{
+  "name": "recall_get_transcript",
+  "description": "Retrieves the full transcript from a Recall.ai bot that has joined or completed a meeting. Returns an array of speaker-attributed transcript segments. Use this when the user asks what was said in a meeting, wants a summary of a call, or requests meeting notes.",
+  "parameters": {
+    "type": "object",
+    "properties": {
+      "bot_id": {
+        "type": "string",
+        "description": "The Recall.ai bot ID returned by recall_send_bot. Looks like a UUID."
+      }
+    },
+    "required": ["bot_id"]
+  },
+  "execute": {
+    "type": "http",
+    "method": "GET",
+    "url": "http://127.0.0.1:18791/api/bots/{{bot_id}}/transcript"
+  }
+}
