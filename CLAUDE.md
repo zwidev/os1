@@ -1,8 +1,12 @@
 # CLAUDE.md — OS1 Voice Agent (ZenCore MARKETPLACE package)
 
-You are in **`D:\agentos1`** — the marketplace-ready packaging of the OS1 voice agent, formatted
-per the ZenCore Agent Developer Guide. **This folder ships. NEVER put real secrets here** — every
-key is a `{{PLACEHOLDER}}` filled by the provisioner at deploy time. Ops notes: `OS1_RUNBOOK.md`.
+This is **`zwidev/os1`** (locally `D:\agentos1`, default branch `main`) — the marketplace-ready
+packaging of the OS1 voice agent, formatted per the ZenCore Agent Developer Guide. **This folder
+ships. NEVER put real secrets here** — every key is a `{{PLACEHOLDER}}` filled by the provisioner
+at deploy time. Ops notes: `OS1_RUNBOOK.md`.
+
+The OS1 terracotta UI + Three.js "tube" animation here is also the visual origin reused by the
+`agent-12-rag-voice` concept (`zwidev/os1agent`).
 
 ## What this is
 A declarative **stack bundle** that deploys the OS1 voice agent to an **Ubuntu VPS**:
@@ -12,7 +16,7 @@ ElevenLabs voice ↔ Claude (fast talk) + OpenClaw worker (background tasks) + O
 ```
 stacks/os1-voice-agent/
   stack.json                 # authoritative component contract (schemaVersion 1)
-  install.sh                 # orchestrator (runs components in installOrder)
+  install.sh                 # orchestrator (runs components by per-component installOrder 10→60)
   README.md ; catalog-entry.ts
   components/
     agent-gateway/   runtime         (OpenClaw + voice proxy; config.template.json, proxy.js, systemd units)
@@ -42,3 +46,8 @@ stacks/os1-voice-agent/
 - `install.sh` scripts target **Ubuntu** (apt, NodeSource, systemd, Ollama), run as **root**.
 - `install.sh` scripts are **untested on a real VPS** — needs a dev-tenant deploy. **Pin the `openclaw` npm version** before going live.
 - This is a **separate copy** of the proxy/memory logic from `D:\myos1` and `D:\ibuildher` — mirror any change made there into here before shipping.
+
+## Working in this repo (agent)
+- Components are ordered by the per-component `installOrder` field in `stack.json` (agent-gateway 10, primary-llm 20, local-inference 30, memory-vault 40, voice-channel 50, os1-dashboard 60).
+- Validate edits to `stack.json` against the contract (`parseStackDefinition()` in the ZenCore guide) and keep `reviewStatus: "review"` until a dev-tenant deploy passes.
+- Develop on your assigned branch; create it from `main` if missing.
