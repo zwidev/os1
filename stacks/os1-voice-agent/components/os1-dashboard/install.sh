@@ -9,15 +9,10 @@ UI_DIR="${COMP_DIR}/ui"
 SERVE_DIR="/opt/os1/dashboard"
 
 : "${ELEVENLABS_AGENT_ID:?missing}"
-# RECALL_API_KEY is optional — only set if recall-integration component runs
-RECALL_ENABLED=${RECALL_API_KEY:+true}
-RECALL_ENABLED=${RECALL_ENABLED:-false}
 
 echo "[os1-dashboard] writing .env.local"
 cat > "${UI_DIR}/.env.local" <<ENV
 VITE_ELEVENLABS_AGENT_ID=${ELEVENLABS_AGENT_ID}
-# Recall.ai service — available at /recall/ when recall-integration is installed
-VITE_RECALL_SERVICE_URL=/recall
 ENV
 
 echo "[os1-dashboard] building UI"

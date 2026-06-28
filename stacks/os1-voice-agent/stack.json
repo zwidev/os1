@@ -51,22 +51,12 @@
       "notes": "ElevenLabs Conversational AI agent. Points its custom-llm Server URL at this tenant's gateway."
     },
     {
-      "id": "recall-integration",
-      "type": "integration",
-      "provider": "recall.ai",
-      "path": "components/recall-integration",
-      "credentialIds": ["recall_api_key"],
-      "installOrder": 55,
-      "required": false,
-      "notes": "Optional. Sends bots to Zoom, Google Meet, and Teams via Recall.ai. Adds a Meetings tab to the dashboard with real-time transcription and recordings."
-    },
-    {
       "id": "os1-dashboard",
       "type": "dashboard",
       "path": "components/os1-dashboard",
       "installOrder": 60,
       "required": true,
-      "notes": "OS1 React UI — Voice tab (ElevenLabs) + Meetings tab (Recall.ai, when installed)."
+      "notes": "OS1 React UI for starting/holding the voice conversation."
     }
   ],
   "services": [
@@ -83,8 +73,7 @@
     { "id": "elevenlabs_agent_id", "label": "ElevenLabs Agent ID", "requiredFor": "voice channel" }
   ],
   "optionalCredentials": [
-    { "id": "primary_llm_api_key", "label": "Anthropic API key (optional)", "requiredFor": "Upgrade primary LLM from local Qwen2.5-14B to Claude Sonnet" },
-    { "id": "recall_api_key", "label": "Recall.ai API key (optional)", "requiredFor": "Meeting bot recording, real-time transcription, and the Meetings dashboard tab" }
+    { "id": "primary_llm_api_key", "label": "Anthropic API key (optional)", "requiredFor": "Upgrade primary LLM from local Qwen2.5-14B to Claude Sonnet" }
   ],
   "resourceHints": { "minMemoryMb": 16384, "gpuOptional": true },
   "exportPolicy": {

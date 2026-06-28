@@ -34,8 +34,8 @@ body.os1-theme {
 
 .os1-container {
   position: relative;
-  height: 100%;
-  width: 100%;
+  height: 100vh;
+  width: 100vw;
   background: #d1684e;
   color: white;
   font-family: 'Helvetica Neue', sans-serif;
