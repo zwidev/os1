@@ -114,7 +114,9 @@ stitched 1080×1920, ~45s). Job IDs for re-renders / upscales:
   `1045fbc6-6d91-454f-aa53-a104f13039bb`.
 - v5 (checkout beat): shot 6 re-rolled — AI just says "Twelve dollars under.",
   she laughs and says "Thank you." (`c22e40f2`), assembly
-  `b1738c55-c618-4b0f-91b6-0002132a3b21`. **Current master.**
+  `b1738c55-c618-4b0f-91b6-0002132a3b21`. **Approved cut.**
+- 4K delivery master: ByteDance upscale (aigc preset, 30fps) of v5 —
+  `f3dcda3e-84d7-4472-8f4d-3f10c7d4dcdd`. **Use this for publishing.**
 
 Known gaps vs the brief: on-screen meme captions and the real OS1 UI overlay
 still need a manual edit pass; end-card text is AI-rendered and should be
