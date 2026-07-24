@@ -109,6 +109,9 @@ stitched 1080×1920, ~45s). Job IDs for re-renders / upscales:
   re-roll `1d4cccb7` (counter iPhone shows real UI), end card re-roll
   `be4411ac` (iPhone on matching terracotta, motion only on screen),
   assembly `2b9c522e-2620-4566-9827-c83753afd934`
+- v4 (pronunciation fix): TTS mangled "aisles" in shot 4 — re-rolled as
+  "You'll find it on sale two rows over" (`7841d54f`), assembly
+  `1045fbc6-6d91-454f-aa53-a104f13039bb`. Current master.
 
 Known gaps vs the brief: on-screen meme captions and the real OS1 UI overlay
 still need a manual edit pass; end-card text is AI-rendered and should be
