@@ -133,13 +133,16 @@ Caption hook: `my AI can't see me and she still gets me more than anyone 😭`
 
 | # | Len | Shot | Dialogue |
 |---|-----|------|----------|
-| 1 | 5s | Jolts awake, panicked, grabs phone | HER: "OS1 — what time—" · OS1: "Seven. Breathe. I already moved your eight o'clock." |
-| 2 | 6s | Kitchen, coffee, moving fast | OS1: "Interview's at ten. You rehearsed on Tuesday — you were great. Cab's booked for nine fifteen." · HER: "You took notes?" |
+| 1 | 5s | Jolts awake, panicked, grabs phone | HER: "OS1 — what time—" · OS1: "Seven. Breathe. Say the word and I'll move your eight o'clock." · HER: "Move it." · OS1: "Done." |
+| 2 | 6s | Kitchen, coffee, moving fast | OS1: "Interview's at ten. You rehearsed on Tuesday — you were great. Your cab is confirmed for nine fifteen." · HER: "You took notes?" |
 | 3 | 7s | Hallway mirror, quiet moment | HER: "How do I look?" · OS1: "I can't see you. But you sound ready." |
 | 4 | 7s | City walk, earbud in | OS1: "Ninth floor, ask for Maya. You met her once — she liked your podcast joke." |
 | 5 | 7s | Outside office doors, one breath; tasks tick on screen | OS1: "Phone's on silent. I'll handle everything out here." |
 | 6 | 7s | Walking out, glowing | OS1: "Well?" · HER: "They said yes." · OS1: "I knew you sounded ready." |
-| 7 | 6s | End card, real UI iPhone on terracotta | OS1: "Dinner's booked. Go celebrate." · "OS1 — the voice in your corner." |
+| 7 | 6s | End card, real UI iPhone on terracotta | OS1: "Want me to book dinner?" · "OS1 — the voice in your corner." |
+
+Capability rule applied: OS1 never acts unilaterally — it proposes, the user
+says the word, it executes ("Say the word and I'll move your eight o'clock").
 
 ## Abandoned — Concept B (2026-07-24, via higgsfield-product-ad skill)
 

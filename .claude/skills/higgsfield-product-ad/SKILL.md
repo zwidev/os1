@@ -35,8 +35,11 @@ the script had OS1 (a voice-only agent, no camera) judging outfits visually,
 and the whole ad had to be abandoned after rendering. For OS1 that means:
 hearing, memory, scheduling, background tasks, web research — never sight.
 If a limitation is charming, use it ("I can't see you. But you sound ready.")
-rather than pretending it away. Confirm the concept with the user before
-spending render credits.
+rather than pretending it away. OS1 also never acts unilaterally: it proposes
+and the user says the word ("Say the word and I'll move your eight o'clock" —
+"Move it." — "Done."), so never script it silently moving appointments or
+booking things unasked. Confirm the concept with the user before spending
+render credits.
 
 Write (or load from the brief) a shot table before generating anything:
 7 shots × 5-8s ≈ 45s. Hook dialogue inside the first 2 seconds. Each shot
