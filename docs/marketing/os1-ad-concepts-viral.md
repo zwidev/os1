@@ -122,6 +122,19 @@ Known gaps vs the brief: on-screen meme captions and the real OS1 UI overlay
 still need a manual edit pass; end-card text is AI-rendered and should be
 replaced with the real wordmark before publishing.
 
+## Produced cut — Concept B (2026-07-24, via higgsfield-product-ad skill)
+
+Same actress reference (`9ae3a7ed`) and hero UI webp (`5f63892d`) as Concept A.
+Dialogue adjusted TTS-safe per the skill ("three hundred forty dollars",
+"thirty percent off", "March twelfth").
+
+- Start frames: S1 `f14f6148` (mirror + real UI phone), S2 `72bb24a4`,
+  S3 `77e9bf87`, S4 `6aa1360f`, S5 `e111faea`, S6 `615d53cc`,
+  S7 end card "the voice in your corner." `4898b4ca`
+- Shots (kling3_0 pro): `46d1483d` (5s), `06dfc0b1` (7s), `aad53ef5` (7s),
+  `41d081be` (7s), `335c1004` (7s), `0eef6cda` (7s), `7569e172` (5s)
+- v1 assembly: `ec719da5-be59-448c-8488-a2ff19951d81` (~45s)
+
 ## Production notes
 
 - **Audio:** record OS1's lines with the canonical ElevenLabs voice first, then
