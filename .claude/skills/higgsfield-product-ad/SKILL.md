@@ -33,7 +33,8 @@ with `get_cost: true` if the user seems cost-sensitive.
 be one the product actually has. This killed a fully-produced concept once:
 the script had OS1 (a voice-only agent, no camera) judging outfits visually,
 and the whole ad had to be abandoned after rendering. For OS1 that means:
-hearing, memory, scheduling, background tasks, web research — never sight.
+hearing, memory, reminders, note-taking, background research — never sight,
+and never phone calls, so it cannot book cabs, tables, or appointments.
 If a limitation is charming, use it ("I can't see you. But you sound ready.")
 rather than pretending it away. OS1 also never acts unilaterally: it proposes
 and the user says the word ("Say the word and I'll move your eight o'clock" —
