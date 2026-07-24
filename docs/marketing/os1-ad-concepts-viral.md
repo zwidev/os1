@@ -104,6 +104,11 @@ stitched 1080×1920, ~45s). Job IDs for re-renders / upscales:
   then we grab your veggies"), shot 4 re-roll `71afc1f3` ("That's five forty.
   You'll find it on sale two aisles over. Also… you own three."), assembly
   `47a5ef0c-dc69-4fa2-a90e-e215f8f67eef` (~46s)
+- v3 (real OS1 UI screens): user-uploaded hero animation reference
+  `5f63892d-6b39-4c51-af46-f55d421034b0` ("os1 voice hero.webp"); shot 1
+  re-roll `1d4cccb7` (counter iPhone shows real UI), end card re-roll
+  `be4411ac` (iPhone on matching terracotta, motion only on screen),
+  assembly `2b9c522e-2620-4566-9827-c83753afd934`
 
 Known gaps vs the brief: on-screen meme captions and the real OS1 UI overlay
 still need a manual edit pass; end-card text is AI-rendered and should be
