@@ -8,7 +8,7 @@ description: >
   explainer_video, fix flawed shots surgically, and finish with a 4K upscale.
   Use this skill whenever the user asks to create, generate, or iterate on a
   video ad, commercial, or promo spot with Higgsfield — including "make the
-  ad", "do Concept B", "create an ad for <product>", re-rolling a shot,
+  ad", "do Concept B", "create an ad for a product", re-rolling a shot,
   changing a dialogue line, or upscaling a finished cut. Also use it when
   revising any ad whose job IDs are logged in
   docs/marketing/os1-ad-concepts-viral.md.
