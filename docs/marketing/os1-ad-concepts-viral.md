@@ -122,7 +122,26 @@ Known gaps vs the brief: on-screen meme captions and the real OS1 UI overlay
 still need a manual edit pass; end-card text is AI-rendered and should be
 replaced with the real wordmark before publishing.
 
-## Produced cut — Concept B (2026-07-24, via higgsfield-product-ad skill)
+## Concept C — "You Sound Ready" (replaces Concept B)
+
+**Concept B is ABANDONED**: its premise had OS1 judging outfits visually, but
+OS1 is voice-only (no camera). Concept C keeps the same actress/world and makes
+the limitation the hook: she asks "How do I look?" and OS1 answers "I can't
+see you. But you sound ready."
+
+Caption hook: `my AI can't see me and she still gets me more than anyone 😭`
+
+| # | Len | Shot | Dialogue |
+|---|-----|------|----------|
+| 1 | 5s | Jolts awake, panicked, grabs phone | HER: "OS1 — what time—" · OS1: "Seven. Breathe. I already moved your eight o'clock." |
+| 2 | 6s | Kitchen, coffee, moving fast | OS1: "Interview's at ten. You rehearsed on Tuesday — you were great. Cab's booked for nine fifteen." · HER: "You took notes?" |
+| 3 | 7s | Hallway mirror, quiet moment | HER: "How do I look?" · OS1: "I can't see you. But you sound ready." |
+| 4 | 7s | City walk, earbud in | OS1: "Ninth floor, ask for Maya. You met her once — she liked your podcast joke." |
+| 5 | 7s | Outside office doors, one breath; tasks tick on screen | OS1: "Phone's on silent. I'll handle everything out here." |
+| 6 | 7s | Walking out, glowing | OS1: "Well?" · HER: "They said yes." · OS1: "I knew you sounded ready." |
+| 7 | 6s | End card, real UI iPhone on terracotta | OS1: "Dinner's booked. Go celebrate." · "OS1 — the voice in your corner." |
+
+## Abandoned — Concept B (2026-07-24, via higgsfield-product-ad skill)
 
 Same actress reference (`9ae3a7ed`) and hero UI webp (`5f63892d`) as Concept A.
 Dialogue adjusted TTS-safe per the skill ("three hundred forty dollars",
