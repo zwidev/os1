@@ -90,6 +90,21 @@ your ex`
 
 ---
 
+## Produced cut — Concept A (2026-07-24)
+
+Concept A was generated end-to-end on Higgsfield (Soul 2.0 character reference →
+Nano Banana start frames → Kling 3.0 pro shots with native dialogue audio →
+stitched 1080×1920, ~45s). Job IDs for re-renders / upscales:
+
+- Reference actress: `9ae3a7ed-de30-462e-b1ac-be5729dad200`
+- Shots 1–7: `e25d48cd`, `85c6c52c`, `9ff0785a`, `0a96ae52`, `6ab3c32e`,
+  `0570cc5a`, `e95ebf30`
+- Final assembly: `c8eafe96-b19e-490f-a2da-267635cad600`
+
+Known gaps vs the brief: on-screen meme captions and the real OS1 UI overlay
+still need a manual edit pass; end-card text is AI-rendered and should be
+replaced with the real wordmark before publishing.
+
 ## Production notes
 
 - **Audio:** record OS1's lines with the canonical ElevenLabs voice first, then
