@@ -99,7 +99,11 @@ stitched 1080×1920, ~45s). Job IDs for re-renders / upscales:
 - Reference actress: `9ae3a7ed-de30-462e-b1ac-be5729dad200`
 - Shots 1–7: `e25d48cd`, `85c6c52c`, `9ff0785a`, `0a96ae52`, `6ab3c32e`,
   `0570cc5a`, `e95ebf30`
-- Final assembly: `c8eafe96-b19e-490f-a2da-267635cad600`
+- Final assembly v1: `c8eafe96-b19e-490f-a2da-267635cad600`
+- v2 (dialogue fixes): shot 3 re-roll `d80fb0e7` ("Your milk is in aisle four,
+  then we grab your veggies"), shot 4 re-roll `71afc1f3` ("That's five forty.
+  You'll find it on sale two aisles over. Also… you own three."), assembly
+  `47a5ef0c-dc69-4fa2-a90e-e215f8f67eef` (~46s)
 
 Known gaps vs the brief: on-screen meme captions and the real OS1 UI overlay
 still need a manual edit pass; end-card text is AI-rendered and should be
