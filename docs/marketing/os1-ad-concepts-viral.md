@@ -161,8 +161,12 @@ appointments — it remembers, reminds, takes notes, and looks things up.
 - v3 (exit geography fix): shot 6 re-rolled — she exits toward camera, never
   re-enters (`c2facf51`), assembly `6b0b1983-0a9c-497a-844a-b3b4f415647f`.
   **Approved cut.**
-- 4K delivery master: ByteDance upscale (aigc, 30fps) of v3 —
-  `61cb199d-be5a-4b9c-b901-eb966ac8a52a`. **Use this for publishing.**
+- 4K of v3 `61cb199d` — superseded, do not use.
+- v4 (final-line fix): shot 6 re-rolled — she says "They said yes. You told
+  me I was ready." (`abdf6ce2`), assembly
+  `10b4d87c-ffab-4217-9237-91336cb301c5`. **Approved cut.**
+- 4K delivery master: ByteDance upscale (aigc, 30fps) of v4 —
+  `c50e1dda-d4b5-4bd6-bf5a-39f04c74dc15`. **Use this for publishing.**
 
 ## Abandoned — Concept B (2026-07-24, via higgsfield-product-ad skill)
 
