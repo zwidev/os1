@@ -155,6 +155,9 @@ appointments — it remembers, reminds, takes notes, and looks things up.
   mirror beat), `394c63ff` (7s), `745409c8` (7s), `89332fb3` (7s),
   `5ed590fc` (6s)
 - v1 assembly: `68597ede-87fe-46d4-903f-f593d08f4e16` (~45s)
+- v2 (door geography fix): shot 5 re-rolled with locked-off camera and
+  she-faces-the-building-throughout blocking (`669b9651`), assembly
+  `82998d55-ec8e-4484-a313-fb0ce5b9a98e`. **Current master.**
 
 ## Abandoned — Concept B (2026-07-24, via higgsfield-product-ad skill)
 
