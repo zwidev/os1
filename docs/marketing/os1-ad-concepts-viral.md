@@ -157,7 +157,12 @@ appointments — it remembers, reminds, takes notes, and looks things up.
 - v1 assembly: `68597ede-87fe-46d4-903f-f593d08f4e16` (~45s)
 - v2 (door geography fix): shot 5 re-rolled with locked-off camera and
   she-faces-the-building-throughout blocking (`669b9651`), assembly
-  `82998d55-ec8e-4484-a313-fb0ce5b9a98e`. **Current master.**
+  `82998d55-ec8e-4484-a313-fb0ce5b9a98e`.
+- v3 (exit geography fix): shot 6 re-rolled — she exits toward camera, never
+  re-enters (`c2facf51`), assembly `6b0b1983-0a9c-497a-844a-b3b4f415647f`.
+  **Approved cut.**
+- 4K delivery master: ByteDance upscale (aigc, 30fps) of v3 —
+  `61cb199d-be5a-4b9c-b901-eb966ac8a52a`. **Use this for publishing.**
 
 ## Abandoned — Concept B (2026-07-24, via higgsfield-product-ad skill)
 

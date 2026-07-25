@@ -106,6 +106,15 @@ who speaks and how ("warm female AI voice says dryly in her earbud: …",
 "she laughs and says: …"), plus ambience (store noise, receipt printer,
 soft synth when the AI speaks).
 
+**Door/entrance geography:** Kling reliably scrambles spatial continuity on
+any shot where someone enters or exits a building — doors flip orientation,
+people walk out and back in. On entrance/exit shots, always lock the
+blocking in the prompt: state the camera position explicitly ("locked-off
+camera on the sidewalk facing the doors"), give ONE walk direction for the
+whole shot ("she walks TOWARD the camera for the entire shot"), and forbid
+the failure mode outright ("she never turns around, the door geometry never
+changes"). Both such shots in one production needed this fix.
+
 **Preset interception:** these prompts often trigger a
 `preset_recommendation` notice (e.g. "IN THE DARK") instead of a job. The
 user wants literal generation — immediately retry the identical call with
