@@ -146,6 +146,16 @@ says the word, it executes ("Say the word and I'll move your eight o'clock").
 OS1 cannot make phone calls, so it never books cabs, restaurants, or
 appointments — it remembers, reminds, takes notes, and looks things up.
 
+### Produced cut — Concept C v1 (2026-07-25)
+
+- Start frames: S1 `3e385b97` (wake-up + real UI), S2 `6991ba37`,
+  S3 `1380077b` (mirror), S4 `c4685de7`, S5 `08848162` (doors + real UI),
+  S6 `2d1d8089`, S7 reuses Concept B end card `4898b4ca`
+- Shots (kling3_0 pro): `fccabdcb` (5s), `e5433c17` (6s), `ba04ac49` (7s
+  mirror beat), `394c63ff` (7s), `745409c8` (7s), `89332fb3` (7s),
+  `5ed590fc` (6s)
+- v1 assembly: `68597ede-87fe-46d4-903f-f593d08f4e16` (~45s)
+
 ## Abandoned — Concept B (2026-07-24, via higgsfield-product-ad skill)
 
 Same actress reference (`9ae3a7ed`) and hero UI webp (`5f63892d`) as Concept A.
