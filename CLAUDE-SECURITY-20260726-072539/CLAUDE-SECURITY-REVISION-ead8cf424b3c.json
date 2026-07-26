@@ -1,0 +1,66 @@
+{
+  "generated_at": "2026-07-26T13:45:20+00:00",
+  "scan_root": "/home/user/os1",
+  "products_dir": "/home/user/os1/CLAUDE-SECURITY-20260726-072539",
+  "mode": "scan",
+  "scope": [],
+  "revision": {
+    "versioned": true,
+    "commit": "ead8cf424b3ce3aa972e7885b781b84a1ed7b0de",
+    "branch": "claude/security-plugin-setup-dyppje",
+    "dirty": false
+  },
+  "revision_source": "self-reported",
+  "model": null,
+  "effort": "medium",
+  "run_shape": {
+    "requested_effort": "medium",
+    "collapsed": null,
+    "source": "coverage.json",
+    "diff_files": null,
+    "diff_lines": null,
+    "scope_files": null,
+    "empty_diff": false,
+    "empty_scope": false,
+    "researchers_dispatched": 28,
+    "skipped_components": [
+      {
+        "name": "git-metadata",
+        "paths": [
+          ".git"
+        ],
+        "reason": "Version control internals, not application code or attacker-reachable surface"
+      },
+      {
+        "name": "dashboard-lockfile-and-build-config",
+        "paths": [
+          "stacks/os1-voice-agent/components/os1-dashboard/ui/package-lock.json"
+        ],
+        "reason": "Generated dependency lockfile, not hand-written code; dependency risk is a separate concern from source review"
+      }
+    ],
+    "completeness_check_outcome": "checked",
+    "unaccounted_top_level_dirs": [],
+    "inventory_fallback": null,
+    "top_level_dir_count": 1
+  },
+  "findings": {
+    "total": 12,
+    "high": 5,
+    "medium": 6,
+    "low": 1
+  },
+  "verification": {
+    "status": "verified",
+    "candidates": 29,
+    "candidates_deduped": 22,
+    "panel_votes": 66,
+    "panel_reviewed_findings": 12,
+    "panel_quorum_findings": 12,
+    "unreviewed_candidate_sites": 0,
+    "attested_findings": 0,
+    "reason": null,
+    "researchers_dispatched": 28,
+    "researchers_returned": 28
+  }
+}
